@@ -1,0 +1,21 @@
+.hero {
+  width: 95%;
+  margin: auto;
+  padding: var(--gap-md);
+}
+
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-row-item {
+  flex: 1 0 250px;
+  box-sizing: border-box;
+  margin: 1rem 0.25em;
+}
+
+.router-link-active,
+.router-link-active > *:not(.username) {
+  color: var(--color-red) !important;
+}
