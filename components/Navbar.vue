@@ -100,7 +100,7 @@ export default {
   margin: auto;
   width: 85%;
   margin-top: var(--gap-lg) !important;
-  background-color: var(--color-super-raised-bg);
+  background-color: var(--color-raised-bg);
   box-shadow: var(--shadow-raised-lg);
   display: flex;
   align-items: center;

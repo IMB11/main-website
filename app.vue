@@ -26,6 +26,7 @@ export default {
 <style>
 :root {
   --color-red: #fb5419 !important;
+  --color-brand: var(--color-red) !important;
 }
 
 html {
