@@ -47,9 +47,9 @@
 }
 
 .flex-row-item {
-  flex: 1 0 350px;
+  flex: 1 0 325px;
   box-sizing: border-box;
-  margin: 1rem 0.25em;
+  margin: 1rem 0.5em;
 }
 
 .router-link-active,
@@ -116,4 +116,34 @@
 
 .grid-display.width-16 {
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-bg) transparent;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-raised-bg);
+  border-radius: 9px;
+  border: 0px none transparent;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+a {
+  color: var(--color-brand);
 }
