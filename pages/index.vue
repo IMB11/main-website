@@ -1,8 +1,8 @@
 <script setup>
 import { Card, Button, WikiIcon, DownloadIcon } from "omorphia";
 
-const { data: updates } = await useFetch("http://localhost:3000/updates");
-const { data: ctrbs } = await useFetch("http://localhost:3000/contributions");
+const { data: updates } = await useApi("/updates");
+const { data: ctrbs } = await useApi("/contributions");
 const $md = useNuxtApp().$mdit;
 
 const links = [
@@ -54,7 +54,7 @@ function formatCount(amount) {
 <template>
   <div class="hero">
     <h1>Updates</h1>
-    <div class="flex-row updates-row">
+    <div class="flex-row">
       <Card v-for="update in updates?.slice(0, 4)" class="flex-row-item">
         <img :src="update.galleryImage" />
 
@@ -110,7 +110,6 @@ function formatCount(amount) {
             v-for="link in legalLinks"
             :to="link.link"
             class="link__button"
-            target="_blank"
             ><Button>{{ link.title }}</Button></NuxtLink
           >
         </div>
@@ -146,32 +145,6 @@ function formatCount(amount) {
 </template>
 
 <style scoped>
-.flex-row-item:not(.normal-item) {
-  display: flex;
-  flex-direction: column;
-  padding-top: var(--gap-sm);
-}
-
-.buttons {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: var(--gap-sm);
-}
-
-.flex-row-item img {
-  background-size: cover;
-  background-position: center;
-  width: calc(100% + (24px * 2));
-  box-shadow: none;
-  height: 5rem;
-  object-fit: cover;
-  margin: -24px;
-  margin-bottom: 0;
-  border-top-right-radius: var(--radius-lg);
-  border-top-left-radius: var(--radius-lg);
-}
-
 @media (max-width: 735px) {
   .final-hero {
     margin-bottom: 5em;

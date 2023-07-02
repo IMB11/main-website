@@ -6,5 +6,5 @@ export default defineNuxtConfig({
       anchorLinks: false,
     }
   },
-  components: []
+  ssr: true,
 })

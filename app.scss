@@ -19,8 +19,35 @@
   gap: var(--gap-sm);
 }
 
+.buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--gap-sm);
+  margin-top: auto;
+}
+
+.flex-row-item img {
+  background-size: cover;
+  background-position: center;
+  width: calc(100% + (24px * 2));
+  box-shadow: none;
+  height: 5rem;
+  object-fit: cover;
+  margin: -24px;
+  margin-bottom: 0;
+  border-top-right-radius: var(--radius-lg);
+  border-top-left-radius: var(--radius-lg);
+}
+
+.flex-row-item:not(.normal-item) {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0;
+}
+
 .flex-row-item {
-  flex: 1 0 250px;
+  flex: 1 0 350px;
   box-sizing: border-box;
   margin: 1rem 0.25em;
 }
