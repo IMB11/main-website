@@ -34,6 +34,12 @@ export default {
 </script>
 
 <template>
+  <Card class="mobile__profile">
+    <NuxtLink class="side__link side__profile" to="/">
+      <Avatar src="https://github.com/mineblock11.png"></Avatar>
+      <h2 class="username">mineblock11</h2>
+    </NuxtLink>
+  </Card>
   <Card class="nav">
     <NuxtLink class="side__link side__profile" to="/">
       <Avatar src="https://github.com/mineblock11.png"></Avatar>
@@ -160,11 +166,22 @@ export default {
   box-shadow: none;
 }
 
+.mobile__profile {
+  display: none;
+}
+
 @media (max-width: 735px) {
   .nav {
     display: none;
   }
   .mobile__nav {
+    display: flex !important;
+  }
+  .mobile__profile {
+    justify-content: space-evenly;
+    margin: var(--gap-xl);
+    margin-left: 15%;
+    margin-right: 15%;
     display: flex !important;
   }
 }

@@ -54,7 +54,7 @@ function formatCount(amount) {
 <template>
   <div class="hero">
     <h1>Updates</h1>
-    <div class="flex-row">
+    <div class="flex-row updates-row">
       <Card v-for="update in updates?.slice(0, 4)" class="flex-row-item">
         <img :src="update.galleryImage" />
 
@@ -86,7 +86,7 @@ function formatCount(amount) {
       </Card>
     </div>
   </div>
-  <div class="hero">
+  <div class="hero final-hero">
     <h1>Information</h1>
     <div class="flex-row">
       <Card class="flex-row-item normal-item">
@@ -170,5 +170,16 @@ function formatCount(amount) {
   margin-bottom: 0;
   border-top-right-radius: var(--radius-lg);
   border-top-left-radius: var(--radius-lg);
+}
+
+@media (max-width: 735px) {
+  .final-hero {
+    margin-bottom: 5em;
+  }
+  .updates-row .flex-row-item:nth-child(4),
+  .updates-row .flex-row-item:nth-child(3),
+  .updates-row .flex-row-item:nth-child(2) {
+    display: none;
+  }
 }
 </style>
