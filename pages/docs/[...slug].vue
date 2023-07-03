@@ -2,65 +2,90 @@
 import { Card, Button, LeftArrowIcon, HomeIcon } from "omorphia";
 const router = useRouter();
 const { data: page } = await useAsyncData(
-  "page",
-  queryContent(router.currentRoute).findOne
-);
-const { data: surroundingPages } = await useAsyncData(
-  "surroundingPages",
-  queryContent(router.currentRoute).findSurround
+  "page_docs",
+  queryContent(router.currentRoute.value.path).findOne
 );
 
-console.log(surroundingPages.value);
+let windowWidth = ref(0);
+
+onMounted(() => {
+  windowWidth.value = window.innerWidth;
+  window.onresize = () => {
+    windowWidth.value = window.innerWidth;
+  };
+});
+
+const { data: sidebarData } = await useAsyncData("sidebarData", () => {
+  const URL = router.currentRoute.value.fullPath.split("/");
+  return queryContent(URL[1] + "/" + URL[2] + "/sidebar").findOne();
+});
 </script>
 
 <template>
-  <main>
-    <div class="hero">
-      <div class="flex-row">
-        <div class="toc">
-          <Card class="toc">
-            <div class="buttons">
-              <NuxtLink class="link__button" to="/docs"
-                ><Button><LeftArrowIcon />Back</Button></NuxtLink
-              >
-            </div>
-            <ContentDoc path="/docs/mru/sidebar" />
-          </Card>
+  <div class="hero">
+    <div class="documentation-area">
+      <Card class="toc-box" :collapsible="!(windowWidth > 1000)">
+        <template #header>
+          <h2>{{ sidebarData?.title }}</h2>
+        </template>
+        <div>
+          <ContentDoc class="no-overflow" path="/docs/mru/sidebar" />
         </div>
-        <div class="content-item">
-          <Card class="card-content-item">
-            <h1>{{ page.title }}</h1>
-            <ContentDoc>
-              <template #empty></template>
-            </ContentDoc>
-          </Card>
+      </Card>
+      <Card class="content-box card-content-item">
+        <h1>{{ page.title }}</h1>
+        <div class="no-overflow">
+          <ContentDoc>
+            <template #empty></template>
+          </ContentDoc>
         </div>
-      </div>
+      </Card>
     </div>
-  </main>
+  </div>
 </template>
 
 <style scoped>
-.toc {
-  flex: 1 0 125px;
-  box-sizing: border-box;
-  margin: 1rem 0.5em;
-  height: 100%;
-}
-
-.toc > * > h3[id] {
-  text-align: center;
-}
-
-.content-item {
-  flex: 1 0 calc(78% - 125px);
-  box-sizing: border-box;
-  height: 80vh;
-}
-
-.content-item .card-content-item {
-  margin-top: 2em;
+.documentation-area {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-auto-flow: row;
+  grid-gap: 0px 0px;
+  gap: var(--gap-md);
+  grid-template-areas:
+    "toc-pane content-pane content-pane"
+    "toc-pane content-pane content-pane"
+    "toc-pane content-pane content-pane";
   overflow: scroll;
-  height: 80vh;
+}
+
+@media (max-width: 1000px) {
+  .documentation-area {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      "toc-pane"
+      "content-pane";
+  }
+
+  .hero {
+    padding-bottom: 20%;
+  }
+
+  .toc-box {
+    height: min-content;
+  }
+}
+
+.toc-box {
+  margin: 0;
+  height: 100%;
+  grid-area: toc-pane;
+}
+
+.content-box {
+  margin: 0;
+  height: 100%;
+  grid-area: content-pane;
 }
 </style>

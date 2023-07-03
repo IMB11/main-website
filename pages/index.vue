@@ -54,7 +54,7 @@ function formatCount(amount) {
 <template>
   <div class="hero">
     <h1>Updates</h1>
-    <div class="flex-row">
+    <div class="flex-row updates-row">
       <Card v-for="update in updates?.slice(0, 4)" class="flex-row-item">
         <img :src="update.galleryImage" />
 

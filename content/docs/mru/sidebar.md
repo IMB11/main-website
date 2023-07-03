@@ -1,4 +1,6 @@
-### M.R.U Documentation
+---
+title: M.R.U Documentation
+---
 
 MRU is a library mod that provides useful compatability features for most of my mods.
 

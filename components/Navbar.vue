@@ -1,5 +1,15 @@
 <script>
-import { Card, Avatar, Button, MoonIcon, SunIcon, HomeIcon } from "omorphia";
+import {
+  Card,
+  Avatar,
+  Button,
+  MoonIcon,
+  SunIcon,
+  HomeIcon,
+  DashboardIcon,
+  ArchiveIcon,
+  SendIcon,
+} from "omorphia";
 export default {
   name: "Navbar",
   components: {
@@ -9,6 +19,9 @@ export default {
     MoonIcon,
     SunIcon,
     HomeIcon,
+    DashboardIcon,
+    ArchiveIcon,
+    SendIcon,
   },
   emits: ["themeChange"],
   data() {
@@ -65,13 +78,13 @@ export default {
       ><Button class="mobile__link_icon" iconOnly><HomeIcon /></Button
     ></NuxtLink>
     <NuxtLink to="/mods"
-      ><Button class="mobile__link_icon" iconOnly><HomeIcon /></Button
+      ><Button class="mobile__link_icon" iconOnly><DashboardIcon /></Button
     ></NuxtLink>
     <NuxtLink to="/docs"
-      ><Button class="mobile__link_icon" iconOnly><HomeIcon /></Button
+      ><Button class="mobile__link_icon" iconOnly><ArchiveIcon /></Button
     ></NuxtLink>
     <NuxtLink to="/contact"
-      ><Button class="mobile__link_icon" iconOnly><HomeIcon /></Button
+      ><Button class="mobile__link_icon" iconOnly><SendIcon /></Button
     ></NuxtLink>
     <Button
       iconOnly
