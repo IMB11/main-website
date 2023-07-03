@@ -68,10 +68,6 @@ const { data: sidebarData } = await useAsyncData("sidebarData", () => {
       "content-pane";
   }
 
-  .hero {
-    padding-bottom: 20%;
-  }
-
   .toc-box {
     height: min-content;
   }

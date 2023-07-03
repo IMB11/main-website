@@ -1,5 +1,5 @@
 <script setup>
-import { Card, Avatar, Button, DownloadIcon } from "omorphia";
+import { Card, Avatar, Button, DownloadIcon, ArchiveIcon } from "omorphia";
 const { data: mods } = await useApi("/mods");
 const $router = useRouter();
 const { data: docPages } = await useAsyncData(`docPages`, () =>
@@ -29,7 +29,7 @@ const { data: docPages } = await useAsyncData(`docPages`, () =>
               docPages.filter((page) => page._path === `/docs/${mod.id}`)
                 .length > 0
             "
-            ><Button>Read More</Button></NuxtLink
+            ><Button><ArchiveIcon />Docs</Button></NuxtLink
           >
         </div>
       </Card>

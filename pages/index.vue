@@ -86,7 +86,7 @@ function formatCount(amount) {
       </Card>
     </div>
   </div>
-  <div class="hero final-hero">
+  <div class="hero">
     <h1>Information</h1>
     <div class="flex-row">
       <Card class="flex-row-item normal-item">
@@ -146,9 +146,6 @@ function formatCount(amount) {
 
 <style scoped>
 @media (max-width: 735px) {
-  .final-hero {
-    margin-bottom: 5em;
-  }
   .updates-row .flex-row-item:nth-child(4),
   .updates-row .flex-row-item:nth-child(3),
   .updates-row .flex-row-item:nth-child(2) {

@@ -18,7 +18,7 @@ export default {
 
 <template>
   <Navbar @theme-change="setTheme" />
-  <div>
+  <div class="padded-mobile">
     <NuxtPage />
   </div>
 </template>
@@ -32,5 +32,11 @@ export default {
 html {
   background-color: var(--color-bg);
   color: var(--color-base);
+}
+
+@media (max-width: 735px) {
+  .padded-mobile {
+    padding-bottom: 5em;
+  }
 }
 </style>
