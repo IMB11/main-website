@@ -22,38 +22,32 @@ export default {
   },
   data: () => {
     return {
-      modsList: [],
-      docPages: [],
+      updatesList: [],
       descending: false,
       orderBy: "Date",
       inputText: "",
     };
   },
   methods: {
-    async populateMods() {
+    populateUpdates() {
       const baseURL = process.env.API_URL ?? "http://localhost:3000";
-      fetch(baseURL + "/mods")
+      fetch(baseURL + "/updates")
         .then((data) => data.json())
-        .then((data) => (this.modsList = data));
-
-      const { data } = await useAsyncData(`docPages`, () =>
-        queryContent("docs").where({ _extension: "md" }).find()
-      );
-      this.docPages = data;
+        .then((data) => (this.updatesList = data));
     },
   },
   beforeMount() {
-    this.populateMods();
+    this.populateUpdates();
   },
   computed: {
-    modsArray: function () {
-      let tempArray = [...this.modsList];
+    updatesArray: function () {
+      let tempArray = [...this.updatesList];
 
       if (this.descending) tempArray.reverse();
 
       if (this.inputText != "") {
-        tempArray = tempArray.filter((mod) =>
-          mod.title.toLowerCase().includes(this.inputText.toLowerCase())
+        tempArray = tempArray.filter((update) =>
+          update.title.toLowerCase().includes(this.inputText.toLowerCase())
         );
       }
 
@@ -65,7 +59,7 @@ export default {
 
 <template>
   <div class="hero">
-    <h1>Mods</h1>
+    <h1>Updates ({{ updatesList.length }})</h1>
     <Card>
       <div class="flex-inputs">
         <div class="iconified-input left">
@@ -99,26 +93,25 @@ export default {
         </div>
       </div>
     </Card>
-    <div class="flex-row image-card-row">
-      <Card v-for="mod in modsArray" class="flex-row-item">
-        <img :src="mod.galleryImage" />
-        <h3>{{ mod.title }}</h3>
+    <div class="flex-row">
+      <Card v-for="update in updatesArray" class="flex-row-item">
+        <img :src="update.galleryImage" />
 
-        <p>{{ mod.summary }}</p>
+        <h3>{{ update.title }}</h3>
+
+        <p>{{ update.summary }}</p>
 
         <div class="buttons">
-          <NuxtLink :to="mod.modrinthURL" class="link__button" target="_blank">
+          <NuxtLink
+            :to="update.modrinthURL"
+            class="link__button"
+            target="_blank"
+          >
             <Button color="primary"><DownloadIcon />Download</Button></NuxtLink
           >
 
-          <NuxtLink
-            class="link__button"
-            :to="'/docs/' + mod.id"
-            v-if="
-              docPages.filter((page) => page._path === `/docs/${mod.id}`)
-                .length > 0
-            "
-            ><Button><ArchiveIcon />Docs</Button></NuxtLink
+          <NuxtLink class="link__button" :to="'/updates/' + update.id"
+            ><Button>Read More</Button></NuxtLink
           >
         </div>
       </Card>

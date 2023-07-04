@@ -9,6 +9,7 @@ import {
   DashboardIcon,
   ArchiveIcon,
   SendIcon,
+  DownloadIcon,
 } from "omorphia";
 export default {
   name: "Navbar",
@@ -22,6 +23,7 @@ export default {
     DashboardIcon,
     ArchiveIcon,
     SendIcon,
+    DownloadIcon,
   },
   emits: ["themeChange"],
   data() {
@@ -61,8 +63,8 @@ export default {
     <div class="side">
       <NuxtLink to="/" class="side__link">Home</NuxtLink>
       <NuxtLink to="/mods" class="side__link">Mods</NuxtLink>
+      <NuxtLink to="/updates" class="side__link">Updates</NuxtLink>
       <NuxtLink to="/docs" class="side__link">Documentation</NuxtLink>
-      <NuxtLink to="/contact" class="side__link">Contact</NuxtLink>
     </div>
     <div class="side__buttons">
       <Button
@@ -80,11 +82,11 @@ export default {
     <NuxtLink to="/mods"
       ><Button class="mobile__link_icon" iconOnly><DashboardIcon /></Button
     ></NuxtLink>
+    <NuxtLink to="/updates"
+      ><Button class="mobile__link_icon" iconOnly><DownloadIcon /></Button
+    ></NuxtLink>
     <NuxtLink to="/docs"
       ><Button class="mobile__link_icon" iconOnly><ArchiveIcon /></Button
-    ></NuxtLink>
-    <NuxtLink to="/contact"
-      ><Button class="mobile__link_icon" iconOnly><SendIcon /></Button
     ></NuxtLink>
     <Button
       iconOnly

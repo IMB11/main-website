@@ -147,3 +147,19 @@
 a {
   color: var(--color-brand);
 }
+
+// Flex inputs
+.flex-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-lg);
+
+  .right {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .left {
+    margin-right: auto;
+  }
+}
