@@ -71,7 +71,9 @@ function formatCount(amount) {
             <Button color="primary"><DownloadIcon />Download</Button></NuxtLink
           >
 
-          <NuxtLink class="link__button" :to="'/updates/' + update.id"
+          <NuxtLink
+            class="link__button bottom-btn"
+            :to="'/updates/' + update.id"
             ><Button>Read More</Button></NuxtLink
           >
         </div>
@@ -80,7 +82,7 @@ function formatCount(amount) {
         <img src="https://cdn.mineblock11.dev/cave_and_cliffs.jpg" />
         <h3>Looking for more?</h3>
         <p>You can find more information on updates on the updates page.</p>
-        <NuxtLink to="/updates" class="link__button"
+        <NuxtLink to="/updates" class="link__button bottom-btn"
           ><Button color="primary"><WikiIcon />View More</Button></NuxtLink
         >
       </Card>
@@ -151,5 +153,9 @@ function formatCount(amount) {
   .updates-row .flex-row-item:nth-child(2) {
     display: none;
   }
+}
+
+.bottom-btn {
+  margin-top: auto;
 }
 </style>
