@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     async populateMods() {
-      const baseURL = process.env.API_URL ?? "http://localhost:3000";
+      const baseURL = useRuntimeConfig().public.apiURL;
       fetch(baseURL + "/mods")
         .then((data) => data.json())
         .then((data) => (this.modsList = data));

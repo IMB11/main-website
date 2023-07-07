@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     populateUpdates() {
-      const baseURL = process.env.API_URL ?? "http://localhost:3000";
+      const baseURL = useRuntimeConfig().public.apiURL;
       fetch(baseURL + "/updates")
         .then((data) => data.json())
         .then((data) => (this.updatesList = data));

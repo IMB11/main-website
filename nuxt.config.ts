@@ -9,5 +9,10 @@ export default defineNuxtConfig({
       theme: 'github-dark'
     }
   },
+  runtimeConfig: {
+    public: {
+      apiURL: process.env.API_URL ?? "https://api.mineblock11.dev",
+    }
+  },
   ssr: false,
 })
