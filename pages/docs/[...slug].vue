@@ -27,6 +27,7 @@ useSeoMeta({
   title: page.title,
   description: mod.summary,
   ogImage: mod.galleryImage,
+  twitterCard: "summary_large_image",
 });
 </script>
 
