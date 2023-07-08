@@ -32,16 +32,13 @@ export default {
     };
   },
   mounted() {
-    if (process.client) {
-      this.theme = window.localStorage.getItem("theme") == "true";
-    }
+    this.theme = this.$store.state.theme;
     this.$emit("themeChange", this.theme);
   },
   watch: {
     theme: function () {
-      if (process.client) {
-        window.localStorage.setItem("theme", this.theme);
-      }
+      this.$store.state.theme = this.theme;
+      console.log(this.$store.state);
       this.$emit("themeChange", this.theme);
     },
   },
@@ -72,11 +69,8 @@ export default {
       <NuxtLink to="/docs" class="side__link">Documentation</NuxtLink>
     </div>
     <div class="side__buttons">
-      <Button
-        iconOnly
-        class="button__rounded_icon"
-        @click="this.theme = !this.theme"
-        ><MoonIcon v-if="!this.theme" /><SunIcon v-if="this.theme"
+      <Button iconOnly class="button__rounded_icon" @click="theme = !theme"
+        ><MoonIcon v-if="!theme" /><SunIcon v-if="theme"
       /></Button>
     </div>
   </Card>
@@ -93,11 +87,8 @@ export default {
     <NuxtLink to="/docs"
       ><Button class="mobile__link_icon" iconOnly><ArchiveIcon /></Button
     ></NuxtLink>
-    <Button
-      iconOnly
-      class="button__rounded_icon"
-      @click="this.theme = !this.theme"
-      ><MoonIcon v-if="!this.theme" /><SunIcon v-if="this.theme"
+    <Button iconOnly class="button__rounded_icon" @click="theme = !theme"
+      ><MoonIcon v-if="!theme" /><SunIcon v-if="theme"
     /></Button>
   </Card>
 </template>

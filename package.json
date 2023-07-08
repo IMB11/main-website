@@ -23,6 +23,7 @@
     "markdown-it-ins": "^3.0.1",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
-    "omorphia": "^0.4.33"
+    "omorphia": "^0.4.33",
+    "vuex": "^4.0.2"
   }
 }

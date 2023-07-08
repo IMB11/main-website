@@ -11,7 +11,7 @@ const { data: page } = await useAsyncData("page_legal", () => {
   <div class="hero">
     <h1>{{ page?.title }}</h1>
     <Card>
-      <ContentDoc />
+      <ContentDoc :head="false" />
     </Card>
   </div>
 </template>

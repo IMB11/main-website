@@ -24,20 +24,10 @@ if (update.value.error) {
 
 update.value = update.value.data;
 
-useHead({
+useSeoMeta({
   title: update.value.title,
-  meta: [
-    {
-      key: "description",
-      hid: "description",
-      content: update.value.summary,
-    },
-    {
-      key: "og:image",
-      hid: "og:image",
-      content: update.value.galleryImage,
-    },
-  ],
+  description: update.value.summary,
+  ogImage: update.value.galleryImage,
 });
 </script>
 

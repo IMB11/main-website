@@ -93,7 +93,7 @@ function formatCount(amount) {
     <div class="flex-row">
       <Card class="flex-row-item normal-item">
         <h3>About Me</h3>
-        <ContentDoc />
+        <ContentDoc :head="false" />
       </Card>
       <Card class="flex-row-item normal-item">
         <h3>Links</h3>

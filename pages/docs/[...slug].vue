@@ -23,15 +23,9 @@ const { data: sidebarData } = await useAsyncData("sidebarData", () => {
   return queryContent(URL[1] + "/" + URL[2] + "/sidebar").findOne();
 });
 
-useHead({
+useSeoMeta({
   title: page.title,
-  meta: [
-    {
-      key: "og:image",
-      hid: "og:image",
-      content: mod.galleryImage,
-    },
-  ],
+  ogImage: mod.galleryImage,
 });
 </script>
 
@@ -43,13 +37,17 @@ useHead({
           <h2>{{ sidebarData?.title }}</h2>
         </template>
         <div>
-          <ContentDoc class="no-overflow" path="/docs/mru/sidebar" />
+          <ContentDoc
+            :head="false"
+            class="no-overflow"
+            path="/docs/mru/sidebar"
+          />
         </div>
       </Card>
       <Card class="content-box card-content-item">
         <h1>{{ page.title }}</h1>
         <div class="no-overflow">
-          <ContentDoc>
+          <ContentDoc :head="false">
             <template #empty></template>
           </ContentDoc>
         </div>
