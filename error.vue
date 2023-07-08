@@ -41,17 +41,17 @@ export default defineNuxtComponent({
       meta: [
         {
           key: "description",
-          property: "description",
+          hid: "description",
           content: "Mod developer for Unity and Java based games.",
         },
         {
           key: "og:image",
-          property: "og:image",
+          hid: "og:image",
           content: "https://github.com/mineblock11.png",
         },
         {
           key: "theme-color",
-          property: "theme-color",
+          hid: "theme-color",
           content: "#fb5419",
         },
       ],

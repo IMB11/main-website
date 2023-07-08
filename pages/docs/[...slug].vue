@@ -28,7 +28,7 @@ useHead({
   meta: [
     {
       key: "og:image",
-      property: "og:image",
+      hid: "og:image",
       content: mod.galleryImage,
     },
   ],

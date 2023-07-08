@@ -29,12 +29,12 @@ useHead({
   meta: [
     {
       key: "description",
-      property: "description",
+      hid: "description",
       content: update.value.summary,
     },
     {
       key: "og:image",
-      property: "og:image",
+      hid: "og:image",
       content: update.value.galleryImage,
     },
   ],
