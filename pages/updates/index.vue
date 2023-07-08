@@ -20,7 +20,7 @@ export default defineNuxtComponent({
     SearchIcon,
     DropdownSelect,
   },
-  seoMeta() {
+  head() {
     return {
       title: "mineblock11 | Updates",
     };
