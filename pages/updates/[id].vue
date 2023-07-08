@@ -35,8 +35,8 @@ useSeoMeta({
 <template>
   <ShareModal
     ref="shareLink"
-    share-title="This is the title for the link"
-    share-text="Share this link"
+    :share-title="update.title"
+    :share-text="update.title + '\n' + update.summary"
     link
   />
   <div class="hero">
