@@ -5,6 +5,10 @@ const { data: page } = await useAsyncData(
   "page_docs",
   queryContent(router.currentRoute.value.path).findOne
 );
+const { data: mods } = await useApi("/mods");
+const URL = router.currentRoute.value.fullPath.split("/");
+
+const mod = mods.value.filter((mod) => mod.id == URL[2])[0];
 
 let windowWidth = ref(0);
 
@@ -16,8 +20,18 @@ onMounted(() => {
 });
 
 const { data: sidebarData } = await useAsyncData("sidebarData", () => {
-  const URL = router.currentRoute.value.fullPath.split("/");
   return queryContent(URL[1] + "/" + URL[2] + "/sidebar").findOne();
+});
+
+useHead({
+  title: page.title,
+  meta: [
+    {
+      key: "og:image",
+      property: "og:image",
+      content: mod.galleryImage,
+    },
+  ],
 });
 </script>
 

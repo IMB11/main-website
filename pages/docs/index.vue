@@ -4,6 +4,9 @@ const { data: docPages } = await useAsyncData(`docPages`, () =>
   queryContent("docs").where({ _extension: "md" }).find()
 );
 const { data: mods } = await useApi("/mods");
+useHead({
+  title: "mineblock11 | Documentation",
+});
 </script>
 
 <template>

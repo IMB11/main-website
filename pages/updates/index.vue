@@ -9,7 +9,7 @@ import {
   SearchIcon,
   DropdownSelect,
 } from "omorphia";
-export default {
+export default defineNuxtComponent({
   components: {
     Card,
     Button,
@@ -19,6 +19,11 @@ export default {
     XIcon,
     SearchIcon,
     DropdownSelect,
+  },
+  head() {
+    return {
+      title: "mineblock11 | Updates",
+    };
   },
   data: () => {
     return {
@@ -54,7 +59,7 @@ export default {
       return tempArray;
     },
   },
-};
+});
 </script>
 
 <template>

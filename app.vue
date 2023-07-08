@@ -3,7 +3,7 @@ import "omorphia/dist/style.css";
 import "./app.scss";
 import Navbar from "./components/Navbar.vue";
 
-export default {
+export default defineNuxtComponent({
   name: "App",
   components: {
     Navbar,
@@ -13,7 +13,36 @@ export default {
       document.documentElement.className = theme ? "light" : "dark";
     },
   },
-};
+  head() {
+    return {
+      title: "mineblock11",
+      link: [
+        {
+          rel: "icon",
+          type: "image/png",
+          href: "https://github.com/mineblock11.png",
+        },
+      ],
+      meta: [
+        {
+          key: "description",
+          property: "description",
+          content: "Mod developer for Unity and Java based games.",
+        },
+        {
+          key: "og:image",
+          property: "og:image",
+          content: "https://github.com/mineblock11.png",
+        },
+        {
+          key: "theme-color",
+          property: "theme-color",
+          content: "#fb5419",
+        },
+      ],
+    };
+  },
+});
 </script>
 
 <template>

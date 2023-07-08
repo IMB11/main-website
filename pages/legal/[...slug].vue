@@ -5,8 +5,6 @@ const { data: page } = await useAsyncData("page_legal", () => {
   console.log(router.currentRoute);
   return queryContent(router.currentRoute.value.path).findOne();
 });
-// console.log(page);
-// console.log(router.currentRoute.value);
 </script>
 
 <template>

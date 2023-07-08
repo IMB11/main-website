@@ -9,7 +9,7 @@ import {
   SearchIcon,
   DropdownSelect,
 } from "omorphia";
-export default {
+export default defineNuxtComponent({
   components: {
     Card,
     Button,
@@ -27,6 +27,11 @@ export default {
       descending: false,
       orderBy: "Date",
       inputText: "",
+    };
+  },
+  head() {
+    return {
+      title: "mineblock11 | Mods",
     };
   },
   methods: {
@@ -60,7 +65,7 @@ export default {
       return tempArray;
     },
   },
-};
+});
 </script>
 
 <template>

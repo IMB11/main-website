@@ -23,7 +23,22 @@ if (update.value.error) {
 }
 
 update.value = update.value.data;
-console.log(update.value);
+
+useHead({
+  title: update.value.title,
+  meta: [
+    {
+      key: "description",
+      property: "description",
+      content: update.value.summary,
+    },
+    {
+      key: "og:image",
+      property: "og:image",
+      content: update.value.galleryImage,
+    },
+  ],
+});
 </script>
 
 <template>
