@@ -28,21 +28,26 @@ export default {
   emits: ["themeChange"],
   data() {
     return {
-      theme: window.localStorage.getItem("theme") === "true" || false,
+      theme: false,
     };
   },
   mounted() {
+    if (process.client) {
+      this.theme = window.localStorage.getItem("theme") == "true";
+    }
     this.$emit("themeChange", this.theme);
   },
   watch: {
     theme: function () {
-      localStorage.setItem("theme", this.theme);
+      if (process.client) {
+        window.localStorage.setItem("theme", this.theme);
+      }
       this.$emit("themeChange", this.theme);
     },
   },
   computed: {
     themeValue: function () {
-      return this.theme ? "light" : "dark";
+      return this.theme ?? false ? "light" : "dark";
     },
   },
 };

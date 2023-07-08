@@ -1,12 +1,14 @@
 <template>
-  <Navbar @theme-change="setTheme" />
-  <div class="hero centered">
-    <p class="error_number">{{ error.statusCode }}</p>
-    <p>{{ error.statusMessage }}</p>
-    <NuxtLink to="/" class="link__button">
-      <Button large><HomeIcon />Go home</Button>
-    </NuxtLink>
-  </div>
+  <ClientOnly>
+    <Navbar @theme-change="setTheme" />
+    <div class="hero centered">
+      <p class="error_number">{{ error.statusCode }}</p>
+      <p>{{ error.statusMessage }}</p>
+      <NuxtLink to="/" class="link__button">
+        <Button large><HomeIcon />Go home</Button>
+      </NuxtLink>
+    </div>
+  </ClientOnly>
 </template>
 
 <script>

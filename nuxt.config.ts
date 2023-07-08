@@ -14,5 +14,4 @@ export default defineNuxtConfig({
       apiURL: process.env.API_URL ?? "https://api.mineblock11.dev",
     }
   },
-  ssr: false,
 })

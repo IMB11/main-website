@@ -10,6 +10,7 @@ export default defineNuxtComponent({
   },
   methods: {
     setTheme(theme) {
+      console.log(theme);
       document.documentElement.className = theme ? "light" : "dark";
     },
   },
@@ -46,10 +47,12 @@ export default defineNuxtComponent({
 </script>
 
 <template>
-  <Navbar @theme-change="setTheme" />
-  <div class="padded-mobile">
-    <NuxtPage />
-  </div>
+  <ClientOnly>
+    <Navbar @theme-change="setTheme" />
+    <div class="padded-mobile">
+      <NuxtPage />
+    </div>
+  </ClientOnly>
 </template>
 
 <style>
