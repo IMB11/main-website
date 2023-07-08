@@ -25,6 +25,7 @@ const { data: sidebarData } = await useAsyncData("sidebarData", () => {
 
 useSeoMeta({
   title: page.title,
+  description: mod.summary,
   ogImage: mod.galleryImage,
 });
 </script>
