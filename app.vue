@@ -7,6 +7,22 @@ function setTheme(theme) {
   document.documentElement.className = theme ? "light" : "dark";
 }
 
+useHead({
+  meta: [
+    {
+      name: "viewport",
+      content: "width=device-width, initial-scale=1.0",
+    },
+  ],
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: "https://github.com/mineblock11.png",
+    },
+  ],
+});
+
 useSeoMeta({
   title: "mineblock11",
   description: "Mod developer for Unity and Java-based games.",
