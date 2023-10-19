@@ -13,6 +13,7 @@ useSeoMeta({
   ogImage: "https://github.com/mineblock11.png",
   favicon: "https://github.com/mineblock11.png",
   twitterCard: "app",
+  themeColor: "#fb5419",
 });
 </script>
 
