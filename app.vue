@@ -11,6 +11,7 @@ useSeoMeta({
   title: "mineblock11",
   description: "Mod developer for Unity and Java-based games.",
   ogImage: "https://github.com/mineblock11.png",
+  favicon: "https://github.com/mineblock11.png",
   twitterCard: "app",
 });
 </script>

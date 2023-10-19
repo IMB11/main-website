@@ -45,6 +45,11 @@ export default defineNuxtComponent({
           content: "Mod developer for Unity and Java based games.",
         },
         {
+          key: "favicon",
+          hid: "favicon",
+          content: "https://github.com/mineblock11.png",
+        },
+        {
           key: "og:image",
           hid: "og:image",
           content: "https://github.com/mineblock11.png",
