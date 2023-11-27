@@ -22,8 +22,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      // apiURL: process.env.API_URL ?? "https://api.mineblock11.dev",
-      apiURL: "http://localhost:3099"
+      apiURL: process.env.API_URL ?? "https://api.imb11.dev",
     }
   },
 })
