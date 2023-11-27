@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'github-pages'
   },
+  ssr: false,
   colorMode: {
     preference: 'system',
     fallback: 'light',
