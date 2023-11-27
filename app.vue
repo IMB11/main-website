@@ -3,10 +3,6 @@ import "omorphia/dist/style.css";
 import "./app.scss";
 import Navbar from "./components/Navbar.vue";
 
-function setTheme(theme) {
-  document.documentElement.className = theme ? "light" : "dark";
-}
-
 useHead({
   meta: [
     {
@@ -18,23 +14,23 @@ useHead({
     {
       rel: "icon",
       type: "image/png",
-      href: "https://github.com/mineblock11.png",
+      href: "https://github.com/imb11.png",
     },
   ],
 });
 
 useSeoMeta({
-  title: "mineblock11",
+  title: "IMB11",
   description: "Mod developer for Unity and Java-based games.",
-  ogImage: "https://github.com/mineblock11.png",
-  favicon: "https://github.com/mineblock11.png",
+  ogImage: "https://github.com/imb11.png",
+  favicon: "https://github.com/imb11.png",
   twitterCard: "app",
   themeColor: "#fb5419",
 });
 </script>
 
 <template>
-  <Navbar @theme-change="setTheme" />
+  <Navbar />
   <div class="padded-mobile">
     <NuxtPage />
   </div>

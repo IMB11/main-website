@@ -1,5 +1,5 @@
 <template>
-  <Navbar @theme-change="setTheme" />
+  <Navbar />
   <div class="hero centered">
     <p class="error_number">{{ error.statusCode }}</p>
     <p>{{ error.statusMessage }}</p>
@@ -30,12 +30,12 @@ export default defineNuxtComponent({
   },
   head() {
     return {
-      title: "mineblock11",
+      title: "IMB11",
       link: [
         {
           rel: "icon",
           type: "image/png",
-          href: "https://github.com/mineblock11.png",
+          href: "https://github.com/imb11.png",
         },
       ],
       meta: [
@@ -47,12 +47,12 @@ export default defineNuxtComponent({
         {
           key: "favicon",
           hid: "favicon",
-          content: "https://github.com/mineblock11.png",
+          content: "https://github.com/imb11.png",
         },
         {
           key: "og:image",
           hid: "og:image",
-          content: "https://github.com/mineblock11.png",
+          content: "https://github.com/imb11.png",
         },
         {
           key: "theme-color",

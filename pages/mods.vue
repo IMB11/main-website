@@ -1,4 +1,4 @@
-<script>
+<script setup lang="ts">
 import {
   Card,
   Button,
@@ -9,69 +9,18 @@ import {
   SearchIcon,
   DropdownSelect,
 } from "omorphia";
-export default defineNuxtComponent({
-  components: {
-    Card,
-    Button,
-    WikiIcon,
-    DownloadIcon,
-    LeftArrowIcon,
-    XIcon,
-    SearchIcon,
-    DropdownSelect,
-  },
-  data: () => {
-    return {
-      modsList: [],
-      docPages: [],
-      descending: false,
-      orderBy: "Date",
-      inputText: "",
-    };
-  },
-  head() {
-    return {
-      title: "mineblock11 | Mods",
-    };
-  },
-  methods: {
-    async populateMods() {
-      const baseURL = useRuntimeConfig().public.apiURL;
-      fetch(baseURL + "/mods")
-        .then((data) => data.json())
-        .then((data) => (this.modsList = data));
 
-      const { data } = await useAsyncData(`docPages`, () =>
-        queryContent("docs").where({ _extension: "md" }).find()
-      );
-      this.docPages = data;
-    },
-  },
-  beforeMount() {
-    this.populateMods();
-  },
-  computed: {
-    modsArray: function () {
-      let tempArray = [...this.modsList];
+import { computedAsync } from "@vueuse/core";
 
-      if (this.descending) tempArray.reverse();
-
-      if (this.inputText != "") {
-        tempArray = tempArray.filter((mod) =>
-          mod.title.toLowerCase().includes(this.inputText.toLowerCase())
-        );
-      }
-
-      return tempArray;
-    },
-  },
-});
+const projects = computedAsync(async () => {
+  return (await useApi("/v2/projects")).value;
+}, []);
 </script>
 
 <template>
   <div class="hero">
     <h1>Mods</h1>
-    <Card>
+    <!-- <Card>
       <div class="flex-inputs">
         <div class="iconified-input left">
           <SearchIcon />
@@ -103,9 +52,9 @@ export default defineNuxtComponent({
           /></Button>
         </div>
       </div>
-    </Card>
+    </Card> -->
     <div class="flex-row image-card-row">
-      <Card v-for="mod in modsArray" class="flex-row-item">
+      <Card v-for="mod in projects" class="flex-row-item">
         <img :src="mod.galleryImage" />
         <h3>{{ mod.title }}</h3>
 
@@ -114,16 +63,6 @@ export default defineNuxtComponent({
         <div class="buttons">
           <NuxtLink :to="mod.modrinthURL" class="link__button" target="_blank">
             <Button color="primary"><DownloadIcon />Download</Button></NuxtLink
-          >
-
-          <NuxtLink
-            class="link__button"
-            :to="'/docs/' + mod.id"
-            v-if="
-              docPages.filter((page) => page._path === `/docs/${mod.id}`)
-                .length > 0
-            "
-            ><Button><ArchiveIcon />Docs</Button></NuxtLink
           >
         </div>
       </Card>
@@ -142,5 +81,9 @@ export default defineNuxtComponent({
   width: fit-content;
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.flex-row-item {
+  max-width: 460px;
 }
 </style>

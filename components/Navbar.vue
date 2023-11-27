@@ -1,99 +1,75 @@
-<script>
-import {
-  Card,
-  Avatar,
-  Button,
-  MoonIcon,
-  SunIcon,
-  HomeIcon,
-  DashboardIcon,
-  ArchiveIcon,
-  SendIcon,
-  DownloadIcon,
-} from "omorphia";
-export default {
-  name: "Navbar",
-  components: {
-    Card,
-    Avatar,
-    Button,
-    MoonIcon,
-    SunIcon,
-    HomeIcon,
-    DashboardIcon,
-    ArchiveIcon,
-    SendIcon,
-    DownloadIcon,
+<script setup lang="ts">
+import { Card, Avatar, Button, MoonIcon, SunIcon } from "omorphia";
+
+const colorMode = useColorMode();
+
+const theme = computed({
+  get() {
+    return colorMode.value !== "dark";
   },
-  emits: ["themeChange"],
-  data() {
-    return {
-      theme: false,
-    };
+  set(newValue) {
+    colorMode.value = newValue ? "light" : "dark";
   },
-  mounted() {
-    this.theme = this.$store.state.theme;
-    this.$emit("themeChange", this.theme);
-  },
-  watch: {
-    theme: function () {
-      this.$store.state.theme = this.theme;
-      console.log(this.$store.state);
-      this.$emit("themeChange", this.theme);
-    },
-  },
-  computed: {
-    themeValue: function () {
-      return this.theme ?? false ? "light" : "dark";
-    },
-  },
-};
+});
 </script>
 
 <template>
-  <Card class="mobile__profile">
-    <NuxtLink class="side__link side__profile" to="/">
-      <Avatar src="https://github.com/mineblock11.png"></Avatar>
-      <h2 class="username">mineblock11</h2>
-    </NuxtLink>
-  </Card>
   <Card class="nav">
     <NuxtLink class="side__link side__profile" to="/">
-      <Avatar src="https://github.com/mineblock11.png"></Avatar>
-      <h2 class="username">mineblock11</h2>
+      <Avatar src="/icon.png"></Avatar>
+      <h2 class="username">IMB11</h2>
     </NuxtLink>
+    <div class="side no__mobile">
+      <NuxtLink to="/" class="side__link">Home</NuxtLink>
+      <NuxtLink to="/mods" class="side__link">Mods</NuxtLink>
+      <NuxtLink to="/updates" class="side__link">Updates</NuxtLink>
+      <!-- <NuxtLink to="/documentation" class="side__link">Documentation</NuxtLink> -->
+    </div>
+    <div class="side__buttons no__mobile">
+      <Button iconOnly class="button__rounded_icon" @click="theme = !theme"
+        ><MoonIcon v-if="!theme" /><SunIcon v-else
+      /></Button>
+    </div>
+  </Card>
+
+  <!-- Responsive version of the navbar for only mobile. -->
+  <Card class="nav nav-body">
     <div class="side">
       <NuxtLink to="/" class="side__link">Home</NuxtLink>
       <NuxtLink to="/mods" class="side__link">Mods</NuxtLink>
       <NuxtLink to="/updates" class="side__link">Updates</NuxtLink>
-      <NuxtLink to="/docs" class="side__link">Documentation</NuxtLink>
+      <!-- <NuxtLink to="/documentation" class="side__link">Documentation</NuxtLink> -->
     </div>
-    <div class="side__buttons">
-      <Button iconOnly class="button__rounded_icon" @click="theme = !theme"
-        ><MoonIcon v-if="!theme" /><SunIcon v-if="theme"
-      /></Button>
-    </div>
-  </Card>
-  <Card class="mobile__nav">
-    <NuxtLink to="/"
-      ><Button class="mobile__link_icon" iconOnly><HomeIcon /></Button
-    ></NuxtLink>
-    <NuxtLink to="/mods"
-      ><Button class="mobile__link_icon" iconOnly><DashboardIcon /></Button
-    ></NuxtLink>
-    <NuxtLink to="/updates"
-      ><Button class="mobile__link_icon" iconOnly><DownloadIcon /></Button
-    ></NuxtLink>
-    <NuxtLink to="/docs"
-      ><Button class="mobile__link_icon" iconOnly><ArchiveIcon /></Button
-    ></NuxtLink>
-    <Button iconOnly class="button__rounded_icon" @click="theme = !theme"
-      ><MoonIcon v-if="!theme" /><SunIcon v-if="theme"
-    /></Button>
   </Card>
 </template>
 
 <style scoped lang="css">
+/* Mobile Navbar */
+@media only screen and (min-width: 600px) {
+  .nav-body {
+    display: none !important;
+  }
+}
+
+/* Hide no__mobile */
+@media only screen and (max-width: 600px) {
+  .no__mobile {
+    display: none !important;
+  }
+
+  .side__profile {
+    margin: auto;
+  }
+
+  .side__profile > .username {
+    /* Adjust font size to fit horizontally fully. */
+    /* Using vw */
+    margin: auto;
+    padding-left: auto;
+    font-size: 5cqw;
+  }
+}
+
 .button__rounded_icon {
   border-radius: 50%;
   box-shadow: none;
@@ -101,8 +77,13 @@ export default {
   transition: color 100ms ease-in-out;
 }
 
+.side__buttons {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .button__rounded_icon:hover {
-  color: var(--color-red);
+  color: var(--color-brand);
 }
 
 .nav-body {
@@ -113,19 +94,38 @@ export default {
 
 .nav {
   padding: var(--gap-md);
-  align-self: center;
   margin: auto;
   width: 85%;
   margin-top: var(--gap-lg) !important;
   background-color: var(--color-raised-bg);
   box-shadow: var(--shadow-raised-lg);
   display: flex;
-  align-items: center;
+}
+
+.username {
+  text-align: center;
+  vertical-align: middle;
+}
+
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .username {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .side {
+    left: 0 !important;
+    position: inherit !important;
+  }
 }
 
 .side {
+  position: relative;
   display: flex;
   margin: auto;
+  margin-left: auto;
+  left: calc(var(--gap-xl) * -4);
   flex-direction: row;
   gap: var(--gap-xl);
 }
@@ -146,54 +146,11 @@ export default {
 
 .side__link:hover > *,
 .side__link:hover {
-  color: var(--color-red);
+  color: var(--color-brand);
   transition: color 100ms ease-in-out;
 }
 
 .side__link > .username {
   margin: auto;
-}
-
-.mobile__nav {
-  z-index: 999;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  margin: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  padding: 4%;
-  align-items: stretch;
-  padding-left: 15%;
-  padding-right: 15%;
-  justify-content: space-between;
-  flex-direction: row;
-  display: none;
-  gap: var(--gap-sm);
-}
-
-.mobile__link_icon {
-  background-color: transparent;
-  box-shadow: none;
-}
-
-.mobile__profile {
-  display: none;
-}
-
-@media (max-width: 735px) {
-  .nav {
-    display: none;
-  }
-  .mobile__nav {
-    display: flex !important;
-  }
-  .mobile__profile {
-    justify-content: space-evenly;
-    margin: var(--gap-xl);
-    margin-left: 15%;
-    margin-right: 15%;
-    display: flex !important;
-  }
 }
 </style>

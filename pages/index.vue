@@ -1,9 +1,18 @@
-<script setup>
+<script setup lang="ts">
 import { Card, Button, WikiIcon, DownloadIcon } from "omorphia";
+import { computedAsync } from "@vueuse/core";
 
-const { data: updates } = await useApi("/updates");
-const { data: ctrbs } = await useApi("/contributions");
-const $md = useNuxtApp().$mdit;
+const recentReleases = computedAsync(async () => {
+  return (await useApi(`/v2/recent`)).value;
+}, [] as any[]);
+
+const contributions = computedAsync(async () => {
+  return (await useApi(`/contributions`)).value;
+}, 111 as number);
+
+onUpdated(() => {
+  console.log(contributions.value);
+});
 
 const links = [
   {
@@ -43,7 +52,7 @@ const legalLinks = [
   },
 ];
 
-function formatCount(amount) {
+function formatCount(amount: number) {
   return Intl.NumberFormat("en-US", {
     notation: "compact",
     maximumFractionDigits: 1,
@@ -55,31 +64,25 @@ function formatCount(amount) {
   <div class="hero">
     <h1>Updates</h1>
     <div class="flex-row updates-row">
-      <Card v-for="update in updates?.slice(0, 4)" class="flex-row-item">
-        <img :src="update.galleryImage" />
+      <Card
+        v-for="release in recentReleases"
+        class="flex-row-item"
+        :key="release.versionID"
+      >
+        <img :src="release.galleryImage" />
 
-        <h3>{{ update.title }}</h3>
+        <h3>{{ release.name }}</h3>
 
-        <p>{{ update.summary }}</p>
+        <p>{{ release.summary }}</p>
 
         <div class="buttons">
-          <NuxtLink
-            :to="update.modrinthURL"
-            class="link__button"
-            target="_blank"
-          >
+          <NuxtLink :to="release.htmlURL" class="link__button" target="_blank">
             <Button color="primary"><DownloadIcon />Download</Button></NuxtLink
-          >
-
-          <NuxtLink
-            class="link__button bottom-btn"
-            :to="'/updates/' + update.id"
-            ><Button>Read More</Button></NuxtLink
           >
         </div>
       </Card>
       <Card class="flex-row-item">
-        <img src="https://cdn.mineblock11.dev/cave_and_cliffs.jpg" />
+        <img src="https://cdn.imb11.dev/cave_and_cliffs.jpg" />
         <h3>Looking for more?</h3>
         <p>You can find more information on updates on the updates page.</p>
         <NuxtLink to="/updates" class="link__button bottom-btn"
@@ -120,26 +123,26 @@ function formatCount(amount) {
         <div class="grid-display">
           <div class="grid-display__item">
             <div class="label">Total Downloads</div>
-            <div class="value">20M+</div>
+            <div class="value">15M+</div>
             <span class="smaller-value">from Modrinth and Curseforge.</span>
           </div>
           <div class="grid-display__item">
             <div class="label">Contributions</div>
             <div class="value">
-              {{ formatCount(ctrbs?.contributions) ?? 4000 }}
+              {{ formatCount(contributions?.contributions ?? 4000) }}
             </div>
             <span class="smaller-value">to open source projects.</span>
           </div>
           <div class="grid-display__item">
             <div class="label">Mod Versions Released</div>
-            <div class="value">{{ updates?.length * 4 ?? 350 }}</div>
+            <div class="value">{{ recentReleases?.length * 4 ?? 350 }}</div>
             <span class="smaller-value">from Modrinth and Curseforge </span>
           </div>
-          <div class="grid-display__item">
+          <!-- <div class="grid-display__item">
             <div class="label">Forge Ports Requested</div>
             <div class="value">Too many...</div>
             <span class="smaller-value">probably from Curseforge </span>
-          </div>
+          </div> -->
         </div>
       </Card>
     </div>
