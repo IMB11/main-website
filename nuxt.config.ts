@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'github-pages'
   },
+  ssr: false,
   content: {
     markdown: {
       anchorLinks: false,
