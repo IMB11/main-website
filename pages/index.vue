@@ -145,11 +145,6 @@ My journey into the world of modding began with Unity engine modding using BepIn
             </div>
             <span class="smaller-value">to open source projects.</span>
           </div>
-          <div class="grid-display__item">
-            <div class="label">Mod Versions Released</div>
-            <div class="value">{{ recentReleases?.length * 4 ?? 350 }}</div>
-            <span class="smaller-value">from Modrinth and Curseforge </span>
-          </div>
           <!-- <div class="grid-display__item">
             <div class="label">Forge Ports Requested</div>
             <div class="value">Too many...</div>
