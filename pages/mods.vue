@@ -13,7 +13,7 @@ import {
 import { computedAsync } from "@vueuse/core";
 
 const projects = computedAsync(async () => {
-  return (await useApi("/v2/projects")).value;
+  return (await useApi("/v2/projects"));
 }, []);
 </script>
 
@@ -62,8 +62,10 @@ const projects = computedAsync(async () => {
 
         <div class="buttons">
           <NuxtLink :to="mod.modrinthURL" class="link__button" target="_blank">
-            <Button color="primary"><DownloadIcon />Download</Button></NuxtLink
-          >
+            <Button color="primary">
+              <DownloadIcon />Download
+            </Button>
+          </NuxtLink>
         </div>
       </Card>
     </div>

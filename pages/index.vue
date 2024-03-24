@@ -9,11 +9,13 @@ import {
 import { computedAsync } from "@vueuse/core";
 
 const recentReleases = computedAsync(async () => {
-  return (await useApi(`/v2/recent`)).value;
+  return (await useApi(`/v2/recent`));
 }, [] as any[]);
 
+console.log(recentReleases)
+
 const contributions = computedAsync(async () => {
-  return (await useApi(`/contributions`)).value;
+  return (await useApi(`/contributions`));
 }, 111 as number);
 
 onUpdated(() => {
@@ -76,11 +78,7 @@ My journey into the world of modding began with Unity engine modding using BepIn
   <div class="hero">
     <h1>Updates</h1>
     <div class="flex-row updates-row">
-      <Card
-        v-for="release in recentReleases"
-        class="flex-row-item"
-        :key="release.versionID"
-      >
+      <Card v-for="release in recentReleases" class="flex-row-item" :key="release.versionID">
         <img :src="release.galleryImage" />
 
         <h3>{{ release.name }}</h3>
@@ -89,17 +87,19 @@ My journey into the world of modding began with Unity engine modding using BepIn
 
         <div class="buttons">
           <NuxtLink :to="release.htmlURL" class="link__button" target="_blank">
-            <Button color="primary"><DownloadIcon />Download</Button></NuxtLink
-          >
+            <Button color="primary">
+              <DownloadIcon />Download
+            </Button>
+          </NuxtLink>
         </div>
       </Card>
       <Card class="flex-row-item">
         <img src="https://cdn.imb11.dev/cave_and_cliffs.jpg" />
         <h3>Looking for more?</h3>
         <p>You can find more information on updates on the updates page.</p>
-        <NuxtLink to="/updates" class="link__button bottom-btn"
-          ><Button color="primary"><WikiIcon />View More</Button></NuxtLink
-        >
+        <NuxtLink to="/updates" class="link__button bottom-btn"><Button color="primary">
+            <WikiIcon />View More
+          </Button></NuxtLink>
       </Card>
     </div>
   </div>
@@ -113,22 +113,13 @@ My journey into the world of modding began with Unity engine modding using BepIn
       <Card class="flex-row-item normal-item">
         <h3>Links</h3>
         <div class="buttons">
-          <NuxtLink
-            v-for="link in links"
-            :to="link.link"
-            class="link__button"
-            target="_blank"
-            ><Button>{{ link.title }}</Button></NuxtLink
-          >
+          <NuxtLink v-for="link in links" :to="link.link" class="link__button" target="_blank"><Button>{{ link.title
+              }}</Button></NuxtLink>
         </div>
         <h3>Legal</h3>
         <div class="buttons">
-          <NuxtLink
-            v-for="link in legalLinks"
-            :to="link.link"
-            class="link__button"
-            ><Button>{{ link.title }}</Button></NuxtLink
-          >
+          <NuxtLink v-for="link in legalLinks" :to="link.link" class="link__button"><Button>{{ link.title }}</Button>
+          </NuxtLink>
         </div>
       </Card>
       <Card class="flex-row-item normal-item">
@@ -158,6 +149,7 @@ My journey into the world of modding began with Unity engine modding using BepIn
 
 <style scoped>
 @media (max-width: 735px) {
+
   .updates-row .flex-row-item:nth-child(4),
   .updates-row .flex-row-item:nth-child(3),
   .updates-row .flex-row-item:nth-child(2) {

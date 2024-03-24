@@ -26,9 +26,10 @@ const theme = computed({
       <!-- <NuxtLink to="/documentation" class="side__link">Documentation</NuxtLink> -->
     </div>
     <div class="side__buttons no__mobile">
-      <Button iconOnly class="button__rounded_icon" @click="theme = !theme"
-        ><MoonIcon v-if="!theme" /><SunIcon v-else
-      /></Button>
+      <Button iconOnly class="button__rounded_icon" @click="theme = !theme">
+        <MoonIcon v-if="!theme" />
+        <SunIcon v-else />
+      </Button>
     </div>
   </Card>
 
@@ -61,7 +62,7 @@ const theme = computed({
     margin: auto;
   }
 
-  .side__profile > .username {
+  .side__profile>.username {
     /* Adjust font size to fit horizontally fully. */
     /* Using vw */
     margin: auto;
@@ -144,13 +145,13 @@ const theme = computed({
   color: var(--color-base);
 }
 
-.side__link:hover > *,
+.side__link:hover>*,
 .side__link:hover {
   color: var(--color-brand);
   transition: color 100ms ease-in-out;
 }
 
-.side__link > .username {
+.side__link>.username {
   margin: auto;
 }
 </style>
