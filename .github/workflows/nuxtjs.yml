@@ -14,9 +14,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "18"
-      - uses: pnpm/action-setup@v4
-      - run: pnpm install
-      - run: pnpm run build
+      - run: npm install
+      - run: npm run build
         env:
           NITRO_PRESET: github_pages
       - name: Upload artifact
