@@ -25,11 +25,11 @@ onUpdated(() => {
 const links = [
   {
     title: "Modrinth",
-    link: "https://modrinth.com/user/mineblock11",
+    link: "https://modrinth.com/user/IMB11",
   },
   {
     title: "Curseforge",
-    link: "https://curseforge.com/members/itsmineblock11/projects",
+    link: "https://curseforge.com/members/IMB11/projects",
   },
   {
     title: "GitHub",
