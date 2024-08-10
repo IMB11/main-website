@@ -29,19 +29,19 @@ const links = [
   },
   {
     title: "Curseforge",
-    link: "https://legacy.curseforge.com/members/itsmineblock11/projects",
+    link: "https://curseforge.com/members/itsmineblock11/projects",
   },
   {
     title: "GitHub",
-    link: "https://github.com/mineblock11",
+    link: "https://github.com/IMB11",
   },
   {
     title: "Maven",
-    link: "https://maven.mineblock11.dev/",
+    link: "https://maven.imb11.dev/",
   },
   {
     title: "Discord",
-    link: "https://discord.gg/UzHtJKqHny",
+    link: "https://discord.imb11.dev/",
   },
 ];
 
@@ -66,12 +66,6 @@ function formatCount(amount: number) {
     maximumFractionDigits: 1,
   }).format(amount);
 }
-
-const content = `My name is Calum, although you may know me as mineblock11. I am a passionate mod developer currently specializing in mods for Minecraft: Java Edition using the Fabric mod loader.
-
-With over four years of experience in modding games, My skills in full-stack development and constantly strive to improve user experience. Currently, I am also pursuing my A-Levels, further deepening my understanding of computer science and programming.
-
-My journey into the world of modding began with Unity engine modding using BepInEx and IPA and later expanded to include modding non-unity games - such as Minecraft!`;
 </script>
 
 <template>
@@ -106,10 +100,6 @@ My journey into the world of modding began with Unity engine modding using BepIn
   <div class="hero">
     <h1>Information</h1>
     <div class="flex-row">
-      <Card class="flex-row-item normal-item">
-        <h3>About Me</h3>
-        <div class="markdown" v-html="renderHighlightedString(content)"></div>
-      </Card>
       <Card class="flex-row-item normal-item">
         <h3>Links</h3>
         <div class="buttons">
